@@ -11,10 +11,10 @@ def load_dataset(train_path, test_path):
   merged_data = train_data+test_data
   return merged_data
 
-def load_model(model_name):
-  tokenizer = AutoTokenizer.from_pretrained(model_name)
-  model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
-  processor = AutoProcessor.from_pretrained(model_name)
+def load_model(model_name, token):
+  tokenizer = AutoTokenizer.from_pretrained(model_name, token)
+  model = AutoModelForSeq2SeqLM.from_pretrained(model_name, token)
+  processor = AutoProcessor.from_pretrained(model_name, token)
   return tokenizer, model, processor
 
 

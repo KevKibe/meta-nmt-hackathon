@@ -7,13 +7,13 @@ import numpy as np
 
 model_name = os.getenv("MODEL_NAME")
 wandb_api_key = os.getenv("WANDB_API_KEY")
-huggingface_hub_write = os.getenv("HUGGINGFACE_WRITE_API_KEY")
+token = os.getenv("HUGGINGFACE_WRITE_API_KEY")
 
 def main():
-	dataset = load_dataset(train_path = "./Train.csv", test_path=  "./Test.csv")
+	dataset = load_dataset(train_path = "tuning-meta-llms-for-african-language-machine-translation/Train.csv", test_path=  "tuning-meta-llms-for-african-language-machine-translation/Test.csv")
 	source = dataset["English"].values.tolist()
 	target = dataset["Twi"].values.tolist()
-	tokenizer, model, processor = load_model(model_name)
+	tokenizer, model, processor = load_model(model_name, token)
 	train_dataset, test_dataset = split(tokenizer, source, target)
 	data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model, return_tensors="pt")
 	metric = evaluate.load("rouge")
@@ -44,10 +44,10 @@ def main():
 		optim="adamw_bnb_8bit",
 		evaluation_strategy="steps",
 		save_strategy='steps',
-		max_steps=2000,
-		save_steps=100,
-		eval_steps=100,
-		logging_steps=100,
+		max_steps=10,
+		save_steps=5,
+		eval_steps=5,
+		logging_steps=5,
 		learning_rate=2e-5,
 		per_device_train_batch_size=16,
 		per_device_eval_batch_size=16,
@@ -79,3 +79,4 @@ def main():
 	trainer.train()
 	trainer.push_to_hub()
 
+main()
