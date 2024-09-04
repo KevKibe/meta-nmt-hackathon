@@ -1,0 +1,7 @@
+torchvision==0.17.2 
+transformers==4.39.2 
+evaluate==0.4.1  
+accelerate==0.31.0 
+bitsandbytes==0.42.0 
+rouge_score 
+wandb
