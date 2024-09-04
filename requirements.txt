@@ -5,3 +5,4 @@ accelerate==0.31.0
 bitsandbytes==0.42.0 
 rouge_score 
 wandb
+scikit-learn
