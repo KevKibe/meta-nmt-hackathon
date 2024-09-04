@@ -1,4 +1,4 @@
-from utils import load_dataset, load_model, split, postprocess_text, compute_metrics
+from utils import load_dataset, load_model, split
 from transformers import DataCollatorForSeq2Seq
 import evaluate
 from transformers import Seq2SeqTrainingArguments, Seq2SeqTrainer
