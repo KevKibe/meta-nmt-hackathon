@@ -14,9 +14,9 @@ read_token = os.getenv("HUGGINGFACE_READ_API_KEY")
 write_token = os.getenv("HUGGINGFACE_WRITE_API_KEY")
 
 def main():
-	dataset = load_dataset(train_path = "tuning-meta-llms-for-african-language-machine-translation/Train.csv", test_path=  "tuning-meta-llms-for-african-language-machine-translation/Test.csv")
-	source = dataset["English"].values.tolist()
-	target = dataset["Twi"].values.tolist()
+	train_data, test_data = load_dataset(train_path = "tuning-meta-llms-for-african-language-machine-translation/Train.csv", test_path=  "tuning-meta-llms-for-african-language-machine-translation/Test.csv")
+	source = train_data["English"].values.tolist()
+	target = train_data["Twi"].values.tolist()
 	tokenizer, model, processor = load_model(model_name, read_token)
 	train_dataset, test_dataset = split(tokenizer, source, target)
 	data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model, return_tensors="pt")

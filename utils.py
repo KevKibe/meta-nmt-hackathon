@@ -6,15 +6,14 @@ import numpy as np
 import evaluate
 
 def load_dataset(train_path, test_path):
-  test_data = pd.read_csv(train_path)
-  train_data = pd.read_csv(test_path)
-  merged_data = train_data+test_data
-  return merged_data
+  train_data = pd.read_csv(train_path)
+  test_data = pd.read_csv(test_path)
+  return train_data, test_data
 
 def load_model(model_name, read_token):
-  tokenizer = AutoTokenizer.from_pretrained(model_name, read_token)
-  model = AutoModelForSeq2SeqLM.from_pretrained(model_name, read_token)
-  processor = AutoProcessor.from_pretrained(model_name, read_token)
+  tokenizer = AutoTokenizer.from_pretrained(model_name, token=read_token)
+  model = AutoModelForSeq2SeqLM.from_pretrained(model_name, token=read_token)
+  processor = AutoProcessor.from_pretrained(model_name, token=read_token)
   return tokenizer, model, processor
 
 
