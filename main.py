@@ -4,6 +4,9 @@ import evaluate
 from transformers import Seq2SeqTrainingArguments, Seq2SeqTrainer
 import os
 import numpy as np
+from dotenv import load_dotenv
+load_dotenv()
+
 
 model_name = os.getenv("MODEL_NAME")
 wandb_api_key = os.getenv("WANDB_API_KEY")

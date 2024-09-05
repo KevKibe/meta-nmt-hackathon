@@ -7,3 +7,5 @@ rouge_score
 wandb
 scikit-learn
 tdqm
+python-dotenv==1.0.1
+
