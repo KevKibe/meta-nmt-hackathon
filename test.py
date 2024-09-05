@@ -1,6 +1,7 @@
 import pandas as pd
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import numpy as np
+from tqdm import tqdm
 
 def test():
 	test_data = pd.read_csv("tuning-meta-llms-for-african-language-machine-translation/Test.csv")
@@ -19,7 +20,8 @@ def test():
 		num_batches = int(np.ceil(len(texts) / batch_size))
 		all_translations = []
 
-		for i in range(num_batches):
+		# Adding tqdm for progress tracking
+		for i in tqdm(range(num_batches), desc="Translating batches", unit="batch"):
 			batch = texts[i * batch_size:(i + 1) * batch_size]
 			translations = process_batch(batch)
 			all_translations.extend(translations)
