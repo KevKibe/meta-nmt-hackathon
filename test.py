@@ -34,3 +34,4 @@ def test():
 
 	test_data[["id", "Twi"]].to_csv("submission_1.csv", index=False)
 
+test()
